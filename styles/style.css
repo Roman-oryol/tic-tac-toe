@@ -4,9 +4,18 @@
 
 :root {
   --font-family: 'Montserrat', sans-serif;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray: #d1d1d1;
+}
+
+html {
+  height: 100%;
 }
 
 body {
+  height: 100%;
   font-family: var(--font-family);
   font-weight: 700;
+  background: linear-gradient(#00d2ff, #3a7bd5);
 }
