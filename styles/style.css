@@ -1,0 +1,12 @@
+@import './base/normalize.css';
+@import './base/reset.css';
+@import './base/fonts.css';
+
+:root {
+  --font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 700;
+}
