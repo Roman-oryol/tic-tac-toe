@@ -6,6 +6,29 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <title>Tic Tac Toe</title>
   </head>
+  <body>
+    <main class="game">
+      <header class="game-info">
+        <h1>Tic-tac-toe</h1>
+        <p class="current-turn">Ход: <span class="player">X</span></p>
+        <p class="score">
+          <span>X - <span class="score-x">0</span></span>
+          <span>O - <span class="score-o">0</span></span>
+        </p>
+      </header>
+      <div class="game-board">
+        <button type="button" class="cell" data-index="0"></button>
+        <button type="button" class="cell" data-index="1"></button>
+        <button type="button" class="cell" data-index="2"></button>
+        <button type="button" class="cell" data-index="3"></button>
+        <button type="button" class="cell" data-index="4"></button>
+        <button type="button" class="cell" data-index="5"></button>
+        <button type="button" class="cell" data-index="6"></button>
+        <button type="button" class="cell" data-index="7"></button>
+        <button type="button" class="cell" data-index="8"></button>
+      </div>
+      <button type="button" class="reset-btn">Сбросить</button>
+    </main>
     <script src="./main.js"></script>
   </body>
 </html>
