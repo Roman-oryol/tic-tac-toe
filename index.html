@@ -8,17 +8,32 @@
   </head>
   <body>
     <main class="game">
+      <h1>Tic-tac-toe</h1>
       <header class="game-info">
-        <h1>Tic-tac-toe</h1>
-        <p class="current-turn">Ход: <span class="player">X</span></p>
         <p class="score">
-          <span>X - <span class="score-x">0</span></span>
-          <span>O - <span class="score-o">0</span></span>
+          <span
+            ><span class="player-x">X</span> -
+            <span class="score-x">0</span></span
+          >
+          <span
+            ><span class="player-o">O</span> -
+            <span class="score-o">0</span></span
+          >
+        </p>
+        <p class="current-turn">
+          Current turn: <span class="player player-o">X</span>
         </p>
       </header>
+      <div class="game-reset">
+        <button type="button" class="reset-btn" disabled>Reset</button>
+      </div>
       <div class="game-board">
-        <button type="button" class="cell" data-index="0"></button>
-        <button type="button" class="cell" data-index="1"></button>
+        <div class="line horizontal-1"></div>
+        <div class="line horizontal-2"></div>
+        <div class="line vertical-1"></div>
+        <div class="line vertical-2"></div>
+        <button type="button" class="cell cell-x" data-index="0"></button>
+        <button type="button" class="cell cell-o" data-index="1"></button>
         <button type="button" class="cell" data-index="2"></button>
         <button type="button" class="cell" data-index="3"></button>
         <button type="button" class="cell" data-index="4"></button>
@@ -27,7 +42,6 @@
         <button type="button" class="cell" data-index="7"></button>
         <button type="button" class="cell" data-index="8"></button>
       </div>
-      <button type="button" class="reset-btn">Сбросить</button>
     </main>
     <script src="./main.js"></script>
   </body>

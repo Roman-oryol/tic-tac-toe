@@ -7,6 +7,8 @@
   --color-white: #ffffff;
   --color-black: #000000;
   --color-gray: #d1d1d1;
+  --color-cross: #f54d62;
+  --color-circle: #87e43a;
 }
 
 html {
@@ -14,8 +16,145 @@ html {
 }
 
 body {
+  min-width: 320px;
   height: 100%;
   font-family: var(--font-family);
   font-weight: 700;
   background: linear-gradient(#00d2ff, #3a7bd5);
+}
+
+.game {
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+.game h1 {
+  margin-bottom: 20px;
+  font-size: 3rem;
+  color: var(--color-white);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.score {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  color: var(--color-black);
+  font-size: 1.75rem;
+  line-height: 1.5;
+}
+
+.score > span {
+  width: 45%;
+  padding: 0 20px;
+  background-color: var(--color-white);
+  border-radius: 30px;
+  text-align: center;
+}
+
+.player-x {
+  color: var(--color-cross);
+}
+
+.player-o {
+  color: var(--color-circle);
+}
+
+.current-turn {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.game-reset {
+  height: 44px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.reset-btn {
+  all: unset;
+  background-color: var(--color-white);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-black);
+  padding: 10px 20px;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: var(--color-gray);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--color-gray);
+  }
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: 1fr 2px 1fr 2px 1fr;
+  grid-template-rows: 1fr 2px 1fr 2px 1fr;
+  aspect-ratio: 1/1;
+  margin-bottom: 20px;
+  padding: 25px;
+  background-color: var(--color-white);
+  border-radius: 20px;
+}
+
+.cell {
+  all: unset;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+
+  &:hover {
+    background: linear-gradient(#00d2ff, #3a7bd5);
+    border-radius: 10px;
+  }
+}
+
+.cell-x {
+  transition: turn 0.3s;
+  background-image: url('../assets/img/cross.svg');
+}
+
+.cell-o {
+  background-image: url('../assets/img/circle.svg');
+}
+
+.line {
+  background-color: var(--color-gray);
+}
+
+.line.vertical-1 {
+  grid-column: 2 / 3;
+  grid-row: 1 / -1;
+}
+
+.line.vertical-2 {
+  grid-column: 4 / 5;
+  grid-row: 1 / -1;
+}
+
+.line.horizontal-1 {
+  grid-row: 2 / 3;
+  grid-column: 1 / -1;
+}
+
+.line.horizontal-2 {
+  grid-row: 4 / 5;
+  grid-column: 1 / -1;
+}
+
+@keyframes turn {
+  0% {
+  }
+
+  100% {
+  }
 }
