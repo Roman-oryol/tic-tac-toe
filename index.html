@@ -21,19 +21,19 @@
           >
         </p>
         <p class="current-turn">
-          Current turn: <span class="player player-o">X</span>
+          Current turn: <span class="player player-x">X</span>
         </p>
       </header>
       <div class="game-reset">
-        <button type="button" class="reset-btn" disabled>Reset</button>
+        <button type="button" class="reset-btn">Reset</button>
       </div>
       <div class="game-board">
         <div class="line horizontal-1"></div>
         <div class="line horizontal-2"></div>
         <div class="line vertical-1"></div>
         <div class="line vertical-2"></div>
-        <button type="button" class="cell cell-x" data-index="0"></button>
-        <button type="button" class="cell cell-o" data-index="1"></button>
+        <button type="button" class="cell" data-index="0"></button>
+        <button type="button" class="cell" data-index="1"></button>
         <button type="button" class="cell" data-index="2"></button>
         <button type="button" class="cell" data-index="3"></button>
         <button type="button" class="cell" data-index="4"></button>
@@ -43,6 +43,12 @@
         <button type="button" class="cell" data-index="8"></button>
       </div>
     </main>
+    <dialog>
+      <p class="dialog-text"></p>
+      <form method="dialog">
+        <button class="dialog-btn">OK</button>
+      </form>
+    </dialog>
     <script src="./main.js"></script>
   </body>
 </html>
