@@ -63,10 +63,21 @@ body {
 }
 
 .current-turn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
   margin-bottom: 10px;
   font-size: 1.5rem;
   color: var(--color-white);
-  text-align: center;
+  /* text-align: center; */
+}
+
+.current-turn .player {
+  width: 10%;
+  /* font-size: 2rem; */
+  /* line-height: 1; */
+  text-transform: uppercase;
 }
 
 .game-reset {
@@ -128,6 +139,7 @@ body {
   outline: none;
   padding: 20px;
   border-radius: 20px;
+  cursor: pointer;
 
   &:focus-visible {
     outline: 2px solid var(--color-cross);
@@ -265,6 +277,14 @@ dialog {
   display: none;
 }
 
+.fade-out {
+  animation: fade-out 0.5s forwards;
+}
+
+.fade-in {
+  animation: fade-in 0.5s forwards;
+}
+
 @keyframes dialog-fade-in {
   0% {
     opacity: 0;
@@ -304,6 +324,28 @@ dialog {
     transform: scale(0);
   }
   100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
     transform: scale(1);
   }
 }
