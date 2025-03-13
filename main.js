@@ -165,6 +165,7 @@ const screenController = (function () {
   let scoreXEl;
   let scoreOEl;
   let resetBtn;
+  let selectPlayerBtn;
 
   function casheDom() {
     boardCells = document.querySelectorAll('.cell');
@@ -173,6 +174,7 @@ const screenController = (function () {
     scoreXEl = document.querySelector('.score-x');
     scoreOEl = document.querySelector('.score-o');
     resetBtn = document.querySelector('.reset-btn');
+    selectPlayerBtn = document.querySelector('.select-player');
   }
 
   function bindEvents() {
