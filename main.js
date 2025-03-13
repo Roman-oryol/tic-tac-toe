@@ -75,8 +75,13 @@ const gameController = (function () {
   const playerO = player('o');
   let currentPlayer;
 
+  function determineFirstPlayer(playerId) {
+    currentPlayer = playerId === 'x' ? playerX : playerO;
+  }
+
   function switchPlayerTurn() {
     currentPlayer = currentPlayer.id === 'x' ? playerO : playerX;
+    screenController.toggleCurrentTurn(currentPlayer.id);
   }
 
   function handleMove(index) {
@@ -134,11 +139,13 @@ const gameController = (function () {
       currentPlayer.incrementScore();
       screenController.updateScore(winner, currentPlayer.getScore());
       resetRound();
+      screenController.showPlayerSelection();
     }
 
     if (isDraw(gameboard.getState())) {
       screenController.showModal(isDraw(gameboard.getState()));
       resetRound();
+      screenController.showPlayerSelection();
     }
   }
 
@@ -146,35 +153,42 @@ const gameController = (function () {
     return { ...currentPlayer };
   }
 
-  function init() {
-    currentPlayer = playerX;
-  }
+  // function init() {
+  //   currentPlayer = playerX;
+  // }
 
   return {
-    init,
+    // init,
     handleMove,
     getCurrentPlayer,
     resetGame,
+    determineFirstPlayer,
   };
 })();
 
 const screenController = (function () {
+  let gameboard;
   let boardCells;
   let modal;
   let modalTextEl;
   let scoreXEl;
   let scoreOEl;
   let resetBtn;
-  let selectPlayerBtn;
+  let selectPlayerButtons;
+  let playerSelectionEl;
+  let currentPlayerEl;
 
   function casheDom() {
-    boardCells = document.querySelectorAll('.cell');
+    gameboard = document.querySelector('.game-board');
+    boardCells = gameboard.querySelectorAll('.cell');
     modal = document.querySelector('dialog');
     modalTextEl = modal.querySelector('.dialog-text');
     scoreXEl = document.querySelector('.score-x');
     scoreOEl = document.querySelector('.score-o');
     resetBtn = document.querySelector('.reset-btn');
-    selectPlayerBtn = document.querySelector('.select-player');
+    playerSelectionEl = document.querySelector('.player-selection');
+    selectPlayerButtons = playerSelectionEl.querySelectorAll('.select-player');
+    currentPlayerEl = document.querySelector('.current-turn .player');
   }
 
   function bindEvents() {
@@ -185,16 +199,55 @@ const screenController = (function () {
     });
 
     resetBtn.addEventListener('click', gameController.resetGame);
+
+    selectPlayerButtons.forEach((button) => {
+      button.addEventListener('click', handleSelectPlayer);
+    });
+  }
+
+  function toggleCurrentTurn(currentPlayerId) {
+    currentPlayerEl.textContent = currentPlayerId;
+    currentPlayerEl.classList.toggle('player-x');
+    currentPlayerEl.classList.toggle('player-o');
+    // currentPlayerEl.classList.toggle(
+    //   `player-${currentPlayerId === 'x' ? 'x' : 'o'}`
+    // );
+  }
+
+  function handleSelectPlayer(e) {
+    const selectedPlayerId = e.currentTarget.dataset.player;
+    gameController.determineFirstPlayer(selectedPlayerId);
+    playerSelectionEl.classList.add('fade-out');
+
+    playerSelectionEl.addEventListener('animationend', () => {
+      playerSelectionEl.classList.add('hidden');
+      gameboard.classList.remove('hidden');
+      gameboard.classList.add('fade-in');
+    });
+
+    currentPlayerEl.textContent = selectedPlayerId;
+    currentPlayerEl.classList.add(
+      `player-${selectedPlayerId === 'x' ? 'x' : 'o'}`
+    );
+  }
+
+  function showPlayerSelection() {
+    gameboard.classList.add('hidden');
+    gameboard.classList.remove('fade-in');
+    playerSelectionEl.classList.remove('hidden');
+    playerSelectionEl.classList.remove('fade-out');
+    currentPlayerEl.className = 'player';
+    currentPlayerEl.textContent = '';
   }
 
   function showModal(result) {
     let message;
     if (typeof result === 'object') {
-      message = `Player <span class="player-${
+      message = `Игрок <span class="player-${
         result.id
-      }">${result.id.toUpperCase()}</span> wins! Congratulations!`;
+      }">${result.id.toUpperCase()}</span> победил! Поздравляем!`;
     } else {
-      message = "It's a draw!";
+      message = 'Игра окончена! Ничья.';
     }
     modalTextEl.innerHTML = message;
     modal.showModal();
@@ -238,8 +291,10 @@ const screenController = (function () {
     updateScore,
     clearBoard,
     clearScores,
+    showPlayerSelection,
+    toggleCurrentTurn,
   };
 })();
 
-gameController.init();
+// gameController.init();
 screenController.init();
