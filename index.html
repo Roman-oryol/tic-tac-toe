@@ -27,7 +27,28 @@
       <div class="game-reset">
         <button type="button" class="reset-btn">Reset</button>
       </div>
-      <div class="game-board">
+      <div class="player-selection">
+        <p>Выберите игрока, который будет ходить первым:</p>
+        <div class="player-buttons">
+          <button
+            type="button"
+            class="select-player"
+            data-player="x"
+            title="Игрок Х"
+          >
+            <img src="./assets/img/cross.svg" alt="Знак для игрока Х" />
+          </button>
+          <button
+            type="button"
+            class="select-player"
+            data-player="о"
+            title="Игрок О"
+          >
+            <img src="./assets/img/circle.svg" alt="Знак для игрока О" />
+          </button>
+        </div>
+      </div>
+      <div class="game-board hidden">
         <div class="line horizontal-1"></div>
         <div class="line horizontal-2"></div>
         <div class="line vertical-1"></div>
